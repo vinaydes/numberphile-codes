@@ -12,12 +12,9 @@
 const int ISBN_LENGTH = 10;
 
 bool check_isbn(unsigned char* code) {
-  int multiplier = 10;
   int sum = 0;
   for (int i = 0; i < ISBN_LENGTH - 1; i++) {
-    sum = sum + (code[i] * (10 - multiplier));
-    sum = sum % 11;
-    multiplier--;
+    sum = (sum + (code[i] * (10 - i))) % 11;
   }
   if (sum + code[ISBN_LENGTH - 1] == 0 || sum + code[ISBN_LENGTH - 1] == 11) {
     return true;
